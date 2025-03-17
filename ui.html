@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcase Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: hsl(231, 68%, 21%);
+            color: #f1eded;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            /* background-color: #f3f3f3; */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-in-out;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            animation: fadeInRight 0.8s ease-in-out;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #ff6f3c;
+            border-radius: 4px;
+        }
+
+        /* Hamburger Menu (for mobile) */
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background-color: #2b2b2b;
+                width: 100%;
+                padding: 10px 0;
+                text-align: center;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: linear-gradient(135deg, rgb(8, 8, 143), #6dd5fa);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: slideInFromTop 1.2s ease;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .btn {
+            background-color: #fff;
+            color: #333;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 2s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff6f3c;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+
+        /* Portfolio Section Styles */
+        .portfolio {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .portfolio h2 {
+            font-size: 42px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .portfolio-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .portfolio-items .item {
+            width: 30%;
+            margin-bottom: 30px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .portfolio-items .item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-items .item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .portfolio-items .item h3 {
+            font-size: 22px;
+            padding: 20px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-items .item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .portfolio-items {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Contact Section Styles */
+        .contact {
+            padding: 80px 20px;
+            background-color: #2b2b2b;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .contact button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 30px;
+        }
+
+        .contact button:hover {
+            background-color: #333;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">RapidCoreSolution</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+           
+            <li><a href="try.html">Contact Us</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>UI/UX Design Service</h1>
+        <p>At our company, we prioritize exceptional design as the cornerstone of user experience. Our UI/UX services are meticulously crafted to create intuitive, engaging, and visually captivating interfaces that elevate user satisfaction and drive tangible results. We seamlessly blend aesthetics with functionality, ensuring seamless interactions that transform each user journey into a memorable and impactful experience.</p>
+        <a href="#portfolio" class="btn">Explore Our Design Approach</a>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>My Projects</h2>
+        <div class="portfolio-items">
+            <div class="item">
+                <img src="app.jpg" alt="Project 1">
+                <h3>Project 1</h3>
+            </div>
+            <div class="item">
+                <img src="app1.jpg" alt="Project 2">
+                <h3>Project 2</h3>
+            </div>
+            <div class="item">
+                <img src="2.jpg" alt="Project 3">
+                <h3>Project 3</h3>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <footer>
+        <p>&copy; 2024 RapidCoreSolution. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
+
